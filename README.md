@@ -1,52 +1,55 @@
+# Dockerized Application Deployment on AWS EC2
 
-# Deploying Chatbot on AWS EC2 using 
+## Objective
+To deploy a containerized Flask-based application using Docker and expose it
+over HTTP, focusing on containerization and cloud deployment fundamentals.
 
+---
+
+## Tech Stack
+- Python (Flask)
+- Docker
+- AWS EC2 (Ubuntu)
+- GitHub
+
+---
 
 ## Project Overview
+This project demonstrates how a Flask application can be packaged into a
+Docker container and deployed on a Linux server.
 
-The interactive chatbot is a sophisticated conversational agent designed for seamless communication. Its source code is stored in a GitHub repository, allowing for version control and collaborative development. To deploy the chatbot on an AWS EC2 instance, the user clones the repository to the instance using Git Bash terminal on an Ubuntu operating system. Leveraging Docker, the user creates a container image encapsulating the chatbot's files and dependencies, ensuring portability and reproducibility. The Docker container is then launched on the EC2 instance, with communication facilitated through a specified port address, enabling users to interact with the chatbot in a scalable and efficient manner.
+The focus of this project is on:
+- Docker image creation
+- Container execution
+- Port mapping
+- Debugging container networking issues
 
+---
 
-## Requirements
-AWS account with an EC2 instance\
-SSH key pair for accessing the EC2 instance
+## Key Steps Performed
 
-## Commands
+### 1. Docker Image Creation
+- Created a Docker image using a Dockerfile
+- Installed dependencies using `requirements.txt`
+- Defined the application startup command
 
-1.Giving access of key pair
+### 2. Container Execution
+- Ran the container in detached mode
+- Mapped host and container ports correctly
+- Verified the application was running inside the container
 
-    chmod 400Docker-chatbot.pem
+### 3. Debugging & Troubleshooting
+- Used `docker logs` to identify port mismatch issues
+- Identified that the application was running on port 3000
+- Corrected Docker port mapping to match the application port
+- Verified application access using curl and browser
 
-2.Switch to Ubuntu environment
+---
 
-3.Clone the repository
+## Outcome
+Successfully deployed and accessed the application via HTTP, gaining practical
+experience with Docker containerization and Linux-based deployment workflows.
 
-    git clone https://github.com/yourusername/chatbot-docker-aws.git
+This project focuses on infrastructure and deployment rather than application
+logic.
 
-    cd Docker-chatbot
-
-    sudo apt-get update
-
-3.Install Docker
-
-    sudo apt install docker.io
-
-    docker --version
-
-    sudo usermod -aG docker $User
-
-3.Create Docker image
-
-    docker build -t chatbot
-
-4.Run image on container
-
-    docker run -d -p 3000:3000 --name chatbot-app chatbot
-
-    docker ps
-
-
-### Notes
-Make sure to update the security group settings on your EC2 instance to allow traffic on port 80.
-
-For a production environment, consider using a reverse proxy (e.g., Nginx) and securing your application with HTTPS.
